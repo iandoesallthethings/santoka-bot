@@ -1,38 +1,13 @@
-# create-svelte
+# Santōka Every Hour
+A Mastodon bot that posts haiku by Santōka Taneda.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+* Haiku written by [Taneda Santōka](https://en.wikipedia.org/wiki/Sant%C5%8Dka_Taneda).
+* Collected by [Gábor Terebess](https://terebess.hu/english/haiku/taneda.html) and all his various sources.  
+* Compiled/normalized by [Luca](https://photon.garden).
+* Bot by [Ian](https://iandoesallthethings.com).
 
-## Creating a project
+## Tech Stuff
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+* Built with [Sveltekit](https://kit.svelte.dev/).
+* Hosted with [Vercel](https://vercel.com/) cron jobs.
+* Posts as [@santokabot@botsin.space](https://botsin.space/@santokabot).
