@@ -11,3 +11,20 @@ A Mastodon bot that posts haiku by Santōka Taneda.
 * Built with [Sveltekit](https://kit.svelte.dev/).
 * Hosted with [Vercel](https://vercel.com/) cron jobs.
 * Posts as [@santokabot@botsin.space](https://botsin.space/@santokabot).
+
+### Development
+
+```bash
+# Create a .env
+MASTODON_URL=
+MASTODON_TOKEN=
+
+# Install deps
+yarn install
+
+# Run dev server
+yarn dev
+
+# Go here for a poem!
+http://localhost:5173/haiku 
+```

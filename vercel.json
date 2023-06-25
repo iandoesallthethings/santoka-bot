@@ -1,7 +1,7 @@
 {
 	"crons": [
 		{
-			"path": "/api/cron",
+			"path": "/haiku?secret=dokudami",
 			"schedule": "0 * * * *"
 		}
 	]
