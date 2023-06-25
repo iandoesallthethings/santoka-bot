@@ -1,5 +1,6 @@
 <script lang="ts">
-	// import readme from '../../README.md?raw'
+	import readme from '../../README.md?raw'
+	import Markdown from '@magidoc/plugin-svelte-marked'
 </script>
 
-<h1>Santoka Every Hour</h1>
+<Markdown source={readme} />
