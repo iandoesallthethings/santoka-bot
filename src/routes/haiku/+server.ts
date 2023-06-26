@@ -7,15 +7,14 @@ export async function GET({ url }) {
 	const shouldPost = url.searchParams.get('secret') === env.CRON_SECRET
 
 	const haiku = Haiku.random()
-	console.log('Got haiku:', haiku)
+
+	const post = `${haiku.text}\n\n(Translated by ${haiku.translator})`
 
 	if (!shouldPost) {
-		return new Response(haiku)
+		return new Response(post)
 	}
 
-	const response = await Mastodon.post(haiku)
-
-	console.log(response)
+	const response = await Mastodon.post(post)
 
 	return json(response)
 }
