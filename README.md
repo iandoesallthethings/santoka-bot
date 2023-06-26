@@ -32,3 +32,7 @@ yarn dev
 # Go here for a poem!
 http://localhost:5173/haiku 
 ```
+
+## Buy me a coff- uhhh [server](https://ko-fi.com/iandoesallthethings)
+
+Cron jobs cost money. Not a lot, but some. If you like this bot and want me to make more, consider dropping a tip to help keep it (and sites like my portfolio, which helps me land gigs that buy me food and such) running. Any donations that exceed the price of Vercel Pro will probably go to the Trevor Project or Mermaids or something. Idk. Drop me a line if you have a suggestion.
