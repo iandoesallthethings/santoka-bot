@@ -6,9 +6,9 @@ import { json } from '@sveltejs/kit'
 export async function GET({ url }) {
 	const shouldPost = url.searchParams.get('secret') === env.CRON_SECRET
 
-	const haiku = Haiku.random()
+	const { text, translator } = Haiku.random()
 
-	const post = `${haiku.text}\n\n(Translated by ${haiku.translator})`
+	const post = `${text}\n\n(Translated by ${translator})`
 
 	if (!shouldPost) {
 		return new Response(post)

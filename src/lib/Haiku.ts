@@ -1,6 +1,4 @@
-// This data comes from scraping the poems directly on terebess.hu.
-// There are some other pages and files (e.g. .doc files) linked from
-// the Terebess site that I plan on grabbing, but haven't done that yet.
+import type { Database } from '$types'
 
 export function random() {
 	const poems = database.poems
@@ -14,33 +12,11 @@ export function random() {
 	}
 }
 
-export interface Database {
-	poems: Poem[]
-	publications: Publication[]
-	translators: Translator[]
-}
-
-export interface Poem {
-	id: number
-	englishText: string
-	japaneseText?: string
-	publicationId: number
-	translatorId: number
-	notes?: string
-	editing: false
-}
-
-export interface Translator {
-	id: number
-	name: string
-}
-
-export interface Publication {
-	id: number
-	description: string
-}
-
 const database: Database = {
+	// This data comes from scraping the poems directly on terebess.hu.
+	// There are some other pages and files (e.g. .doc files) linked from
+	// the Terebess site that I plan on grabbing, but haven't done that yet.
+	// - Luca
 	poems: [
 		{
 			id: 0,
