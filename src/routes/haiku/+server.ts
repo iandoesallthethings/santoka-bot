@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private'
+// import { env } from '$env/dynamic/private'
 import * as Haiku from '$lib/Haiku'
 import * as Mastodon from '$lib/Mastodon'
 import { json } from '@sveltejs/kit'
