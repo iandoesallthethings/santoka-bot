@@ -1,8 +1,8 @@
 {
 	"crons": [
 		{
-			"path": "/haiku?secret=dokudami",
-			"schedule": "0 * * * *"
+			"path": "/haiku",
+			"schedule": "0 12 * * *"
 		}
 	]
 }
