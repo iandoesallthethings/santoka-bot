@@ -7,7 +7,7 @@ export function random() {
 	const translator = database.translators.find(({ id }) => id === translatorId)
 
 	return {
-		text: englishText.replace(' / ', '\n'),
+		text: englishText.replaceAll(' / ', '\n'),
 		translator: translator?.name,
 	}
 }
