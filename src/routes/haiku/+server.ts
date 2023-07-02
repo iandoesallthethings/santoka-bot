@@ -1,7 +1,7 @@
+import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 import * as Haiku from '$lib/Haiku'
 import * as Mastodon from '$lib/Mastodon'
-import { json } from '@sveltejs/kit'
 
 export async function GET({ url }) {
 	const shouldPost = url.searchParams.get('secret') === env.CRON_SECRET

@@ -7,7 +7,7 @@ export function random() {
 	const translator = database.translators.find(({ id }) => id === translatorId)
 
 	return {
-		text: englishText.replaceAll(' / ', '\n'),
+		text: englishText.replaceAll('/ ', '\n'),
 		translator: translator?.name,
 	}
 }
@@ -3785,7 +3785,7 @@ const database: Database = {
 			editing: false,
 			translatorId: 10,
 			publicationId: 11,
-			englishText: 'there is only thisroad spring snow falling',
+			englishText: 'there is only this road spring snow falling',
 		},
 		{
 			id: 482,
