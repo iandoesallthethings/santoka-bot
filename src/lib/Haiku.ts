@@ -1,8 +1,9 @@
 import type { Database } from '$types'
+import * as Random from '$lib/Random'
 
 export function random() {
 	const poems = database.poems
-	const { englishText, translatorId } = poems[Math.floor(Math.random() * poems.length)]
+	const { englishText, translatorId } = Random.knuth(poems)
 
 	const translator = database.translators.find(({ id }) => id === translatorId)
 
@@ -13,10 +14,13 @@ export function random() {
 }
 
 const database: Database = {
-	// This data comes from scraping the poems directly on terebess.hu.
-	// There are some other pages and files (e.g. .doc files) linked from
-	// the Terebess site that I plan on grabbing, but haven't done that yet.
-	// - Luca
+	/*
+	 *
+	 * This data comes from scraping the poems directly on terebess.hu.
+	 * There are some other pages and files (e.g. .doc files) linked from
+	 * the Terebess site that I plan on grabbing, but haven't done that yet.
+	 * - Luca
+	 */
 	poems: [
 		{
 			id: 0,

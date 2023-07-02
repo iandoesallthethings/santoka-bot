@@ -15,11 +15,13 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@magidoc/plugin-svelte-marked": "^4.0.0",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-vercel": "^3.0.1",
 		"@sveltejs/kit": "^1.20.4",
 		"@sveltejs/vite-plugin-svelte": "^2.4.2",
+		"@types/knuth-shuffle-seeded": "^1.0.0",
 		"@types/marked": "^5.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
@@ -27,6 +29,8 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"marked": "^5.1.0",
+		"masto": "^5.11.3",
 		"postcss": "^8.4.24",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
@@ -38,9 +42,7 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.3.6",
 		"vitest": "^0.25.3",
-		"@magidoc/plugin-svelte-marked": "^4.0.0",
-		"marked": "^5.1.0",
-		"masto": "^5.11.3"
+		"knuth-shuffle-seeded": "^1.0.6"
 	},
 	"dependencies": {}
 }
