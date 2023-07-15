@@ -29,6 +29,7 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"knuth-shuffle-seeded": "^1.0.6",
 		"marked": "^5.1.0",
 		"masto": "^5.11.3",
 		"postcss": "^8.4.24",
@@ -42,7 +43,6 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.3.6",
 		"vitest": "^0.25.3",
-		"knuth-shuffle-seeded": "^1.0.6"
-	},
-	"dependencies": {}
+		"twitter-api-v2": "^1.15.0"
+	}
 }

@@ -1,10 +1,11 @@
-import { json } from '@sveltejs/kit'
+import { error, json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 import * as Haiku from '$lib/Haiku'
 import * as Mastodon from '$lib/Mastodon'
+import * as Twitter from '$lib/Twitter'
 
-export async function GET({ url }) {
-	const shouldPost = url.searchParams.get('secret') === env.CRON_SECRET
+export async function GET({ request }) {
+	const shouldPost = request.headers.get('Authorization')?.split(' ')[1] === env.CRON_SECRET
 
 	const { text, translator } = Haiku.random()
 
@@ -14,7 +15,12 @@ export async function GET({ url }) {
 		return new Response(post)
 	}
 
-	const response = await Mastodon.post(post)
+	const toot = await Mastodon.post(post)
+	const tweet = await Twitter.post(post)
 
-	return json(response)
+	if (!toot || !tweet) {
+		throw error(500, JSON.stringify({ toot, tweet }))
+	}
+
+	return json({ toot, tweet })
 }
