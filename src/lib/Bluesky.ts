@@ -6,14 +6,18 @@ export const client = new AtpAgent({
 })
 
 export async function post(text: string) {
-	if (!env.BLUESKY_USERNAME || !env.BLUESKY_PASSWORD) {
-		throw new Error('Missing Bluesky credentials')
+	try {
+		if (!env.BLUESKY_USERNAME || !env.BLUESKY_PASSWORD) {
+			throw new Error('Missing Bluesky credentials')
+		}
+
+		await client.login({
+			identifier: env.BLUESKY_USERNAME,
+			password: env.BLUESKY_PASSWORD,
+		})
+
+		return await client.post({ text })
+	} catch (error) {
+		console.error('Bluesky post failed', error)
 	}
-
-	await client.login({
-		identifier: env.BLUESKY_USERNAME,
-		password: env.BLUESKY_PASSWORD,
-	})
-
-	return await client.post({ text })
 }

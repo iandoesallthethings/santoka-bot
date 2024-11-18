@@ -7,8 +7,12 @@ export const client = await login({
 })
 
 export async function post(status: string) {
-	return await client.v1.statuses.create({
-		status,
-		visibility: 'public',
-	})
+	try {
+		return await client.v1.statuses.create({
+			status,
+			visibility: 'public',
+		})
+	} catch (error) {
+		console.error('Mastodon post failed', error)
+	}
 }

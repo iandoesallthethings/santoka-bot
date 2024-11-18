@@ -11,5 +11,9 @@ const twitter = new TwitterApi({
 export const client = twitter.readWrite
 
 export async function post(text: string) {
-	return await client.v2.tweet({ text })
+	try {
+		return await client.v2.tweet({ text })
+	} catch (error) {
+		console.error('Twitter post failed', error)
+	}
 }
