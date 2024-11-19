@@ -3,34 +3,55 @@
 
 @layer base {
 	h1 {
-		@apply text-2xl text-center;
+		@apply text-4xl;
 	}
 
 	h2 {
-		@apply text-xl;
+		@apply text-2xl;
 	}
 
 	h3 {
-		@apply text-lg;
+		@apply text-xl;
 	}
 
 	h1,
 	h2,
 	h3 {
-		@apply font-bold my-2;
+		@apply font-bold mb-2 mt-8;
+	}
+
+	p {
+		@apply my-2;
 	}
 
 	li {
-		@apply list-disc ml-4;
+		@apply ml-4;
 	}
+
+	ol li {
+		@apply list-decimal;
+	}
+
+	ul li {
+		@apply list-disc;
+	}
+
 	a {
-		@apply text-blue-600 underline;
+		@apply text-blue-600 dark:text-blue-400;
 	}
 
 	code {
-		@apply block bg-gray-100 rounded-md px-4 py-2;
+		@apply bg-gray-100 dark:bg-gray-700 dark:text-gray-200 rounded-md px-2 py-px;
+	}
+
+	pre code {
+		@apply block px-4 py-2 my-2;
 	}
 }
 
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply dark:bg-gray-800 dark:text-gray-200;
+}

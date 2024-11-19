@@ -1,7 +1,7 @@
-import { login } from 'masto'
+import { createRestAPIClient } from 'masto'
 import { env } from '$env/dynamic/private'
 
-export const client = await login({
+export const client = await createRestAPIClient({
 	url: env.MASTODON_URL,
 	accessToken: env.MASTODON_TOKEN,
 })
