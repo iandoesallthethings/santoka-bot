@@ -1,13 +1,13 @@
 import type { Database, Poem } from '$types'
-import * as Random from '$lib/Random'
+import * as Shuffle from '$lib/Shuffle'
 
-export function format({ englishText, translator }: Poem): string {
+export function englishPost({ englishText, translator }: Poem): string {
 	return `${englishText}\n\n(Translated by ${translator.name})`
 }
 
-export function random(): Poem {
+export function get(): Poem {
 	const poems = database.poems
-	const dbPoem = Random.knuth(poems)
+	const dbPoem = Shuffle.epoch(poems)
 
 	const translator =
 		database.translators.find(({ id }) => id === dbPoem.translatorId) ?? unknownTranslator

@@ -7,11 +7,7 @@ type Jobs = { [key: string]: Promise<any> }
 type AwaitedJob<J extends Jobs> = Result<Awaited<J[keyof J]>>
 type Results<J extends Jobs> = { [Name in keyof J]?: AwaitedJob<J> }
 
-export async function parallelJobs<J extends Jobs, Name extends keyof J>(
-	jobs: J
-): Promise<Results<J>> {
-	type JobWithName = { name: Name } & AwaitedJob<J>
-
+export async function runParallelJobs<J extends Jobs>(jobs: J): Promise<Results<J>> {
 	const results = await Promise.allSettled(
 		Object.entries(jobs).map(([name, promise]) =>
 			promise.then(
@@ -25,9 +21,13 @@ export async function parallelJobs<J extends Jobs, Name extends keyof J>(
 	)
 
 	return results.reduce<Results<J>>((acc, result) => {
+		type JobWithName = { name: keyof J } & AwaitedJob<J>
 		const { name, status, value, error } = result as JobWithName
+
 		acc[name] =
-			status === 'fulfilled' ? { status: 'fulfilled', value } : { status: 'rejected', error }
+			status === 'fulfilled' // Forced formatting
+				? { status: 'fulfilled', value }
+				: { status: 'rejected', error }
 		return acc
 	}, {})
 }

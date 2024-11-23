@@ -24,11 +24,13 @@ A microblog bot that posts a random haiku by Santōka Taneda every hour.
 
 I'm aiming at a _good enough_ deterministic random poem every hour. Here's how it works:
 
-1. Grab a seeded [Knuth shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) of all the poems where the seed is the current month
-2. Grab the nth poem, where n is the current hour since the beginning of the month
+1. Grab a seeded [Knuth shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) of all the poems where the seed is `hours since epoch / number of poems`. This gives us the current `cycle` index.
+
+2. Grab the `n`th poem, where `n` is the current hour since the beginning of `cycle`.
+
 3. Post to Bluesky, Mastodon, and Twitter when /haiku is called from an authenticated cron job
 
-At the moment, there are enough poems to last about 25 days. It just loops after that until the next month, then reshuffles on the first
+At the moment, there are enough poems to go about 27 days without any repeats. Since it's based off of a timestamp, it's also statess, so the order is preserved between deployments, between restarts, etc etc. 
 
 ## Dev
 
