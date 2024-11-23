@@ -1,10 +1,10 @@
 export interface Database {
-	poems: Poem[]
+	poems: DbPoem[]
 	publications: Publication[]
 	translators: Translator[]
 }
 
-export interface Poem {
+export interface DbPoem {
 	id: number
 	englishText: string
 	japaneseText?: string
@@ -12,6 +12,11 @@ export interface Poem {
 	translatorId: number
 	notes?: string
 	editing: false
+}
+
+export interface Poem extends DbPoem {
+	translator: Translator
+	publication: Publication
 }
 
 export interface Translator {

@@ -7,12 +7,8 @@ export const client = await createRestAPIClient({
 })
 
 export async function post(status: string) {
-	try {
-		return await client.v1.statuses.create({
-			status,
-			visibility: 'public',
-		})
-	} catch (error) {
-		console.error('Mastodon post failed', error)
-	}
+	return await client.v1.statuses.create({
+		status,
+		visibility: 'public',
+	})
 }

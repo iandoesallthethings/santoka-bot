@@ -1,15 +1,24 @@
-import type { Database } from '$types'
+import type { Database, Poem } from '$types'
 import * as Random from '$lib/Random'
 
-export function random() {
-	const poems = database.poems
-	const { englishText, translatorId } = Random.knuth(poems)
+export function format({ englishText, translator }: Poem): string {
+	return `${englishText}\n\n(Translated by ${translator.name})`
+}
 
-	const translator = database.translators.find(({ id }) => id === translatorId)
+export function random(): Poem {
+	const poems = database.poems
+	const dbPoem = Random.knuth(poems)
+
+	const translator =
+		database.translators.find(({ id }) => id === dbPoem.translatorId) ?? unknownTranslator
+	const publication =
+		database.publications.find(({ id }) => id === dbPoem.publicationId) ?? unknownPublication
 
 	return {
-		text: englishText.replaceAll('/ ', '\n'),
-		translator: translator?.name,
+		...dbPoem,
+		englishText: dbPoem.englishText.replaceAll('/ ', '\n'),
+		translator,
+		publication,
 	}
 }
 
@@ -5479,6 +5488,16 @@ const database: Database = {
 		{ id: 19, name: 'Michael Hoffman' },
 		{ id: 20, name: 'Robin D. Gill' },
 	],
+}
+const unknownTranslator = { id: -1, name: 'Unknown' }
+const unknownPublication = { id: -1, description: 'Unknown' }
+const unknownPoem = {
+	id: -1,
+	editing: false,
+	translatorId: -1,
+	publicationId: -1,
+	japaneseText: '',
+	englishText: '',
 }
 
 export default database
