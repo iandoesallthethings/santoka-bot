@@ -24,5 +24,5 @@ export async function GET({ request }) {
 		Twitter.post(post),
 	])
 
-	return json({ toot, tweet, bsky })
+	return json({ bsky, toot, tweet })
 }
