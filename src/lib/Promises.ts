@@ -3,31 +3,25 @@ interface Result<T> {
 	value?: T
 	error?: any
 }
-type Jobs = { [key: string]: Promise<any> }
-type AwaitedJob<J extends Jobs> = Result<Awaited<J[keyof J]>>
-type Results<J extends Jobs> = { [Name in keyof J]?: AwaitedJob<J> }
+type JobsInput = { [key: string]: Promise<any> }
+type JobResult<J extends JobsInput> = Result<Awaited<J[keyof J]>>
+type Results<J extends JobsInput> = { [Name in keyof J]?: JobResult<J> }
 
-export async function runParallelJobs<J extends Jobs>(jobs: J): Promise<Results<J>> {
-	const results = await Promise.allSettled(
-		Object.entries(jobs).map(([name, promise]) =>
-			promise.then(
-				(value) => ({ name, status: 'fulfilled', value }),
-				(error) => {
-					console.error(`${name} post failed.`, error)
-					return { name, status: 'rejected', error }
-				}
-			)
-		)
-	)
+/**
+ * Runs a set of promises in parallel and returns the results.
+ * @param jobs JobsInput { [JobName]: Promise }
+ * @returns Results { [JobName]: Result }
+ */
+export async function runParallelJobs<J extends JobsInput>(jobs: J): Promise<Results<J>> {
+	const names = Object.keys(jobs) as (keyof J)[]
+	const promises = Object.values(jobs) as J[keyof J][]
 
-	return results.reduce<Results<J>>((acc, result) => {
-		type JobWithName = { name: keyof J } & AwaitedJob<J>
-		const { name, status, value, error } = result as JobWithName
+	const results = await Promise.allSettled(promises)
 
-		acc[name] =
-			status === 'fulfilled' // Forced formatting
-				? { status: 'fulfilled', value }
-				: { status: 'rejected', error }
+	// Reshape the results into { [JobName]: Result }
+	return results.reduce<Results<J>>((acc, result, index) => {
+		const jobName = names[index]
+		acc[jobName] = result
 		return acc
 	}, {})
 }
