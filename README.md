@@ -12,7 +12,8 @@ A microblog bot that posts a random haiku by Santōka Taneda every hour.
 ## Tech
 
 - Built with [Sveltekit](https://kit.svelte.dev/)
-- Hosted on [Vercel](https://vercel.com/), using cron jobs
+- [Hosted](https://santoka-bot.vercel.app) on [Vercel](https://vercel.com/), using cron jobs
+- Code lives on [GitHub](https://github.com/iandoesallthethings/santoka-bot)
 
 ## Live at
 
