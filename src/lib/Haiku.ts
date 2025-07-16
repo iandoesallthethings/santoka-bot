@@ -1,11 +1,17 @@
 import type { Database, Poem } from '$types'
 import * as Shuffle from '$lib/Shuffle'
 
-export function englishPost({ englishText, translator }: Poem): string {
+export function getPoemPost(language: 'english' | 'japanese' = 'english'): string {
+	const { englishText, japaneseText, translator } = getPoem()
+
+	if (language === 'japanese') {
+		return japaneseText ?? 'No Japanese text available'
+	}
+
 	return `${englishText}\n\n(Translated by ${translator.name})`
 }
 
-export function get(): Poem {
+function getPoem(): Poem {
 	const poems = database.poems
 	const dbPoem = Shuffle.epoch(poems)
 
